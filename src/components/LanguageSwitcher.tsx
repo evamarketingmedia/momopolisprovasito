@@ -14,7 +14,7 @@ export default function LanguageSwitcher({ locale }: { locale: Locale }) {
   const restOfPath = stripLocale(pathname, locale);
 
   return (
-    <div className="flex items-center gap-1 rounded-full border border-white/20 bg-white/5 p-1 text-xs font-bold uppercase tracking-wide">
+    <div className="flex items-center gap-1 rounded-full border border-momo-black/20 bg-momo-black/5 p-1 text-xs font-bold uppercase tracking-wide">
       {locales.map((l) => {
         const href = `/${l}${restOfPath === "/" ? "" : restOfPath}`;
         const active = l === locale;
@@ -29,7 +29,7 @@ export default function LanguageSwitcher({ locale }: { locale: Locale }) {
             className={`rounded-full px-2.5 py-1 transition-colors ${
               active
                 ? "bg-momo-orange text-momo-black"
-                : "text-white/80 hover:text-white"
+                : "text-momo-black/70 hover:text-momo-black"
             }`}
           >
             {l}

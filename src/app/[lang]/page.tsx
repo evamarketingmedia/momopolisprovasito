@@ -47,8 +47,7 @@ export default async function HomePage({
   return (
     <>
       {/* HERO */}
-      <section className="bg-dots relative overflow-hidden bg-momo-black">
-        <div className="absolute inset-0 bg-gradient-to-br from-momo-green-900/70 via-momo-black to-momo-black" />
+      <section className="bg-dots relative overflow-hidden bg-white">
         <Container className="relative grid items-center gap-10 pb-24 pt-16 sm:pb-28 sm:pt-24 lg:grid-cols-2 lg:pt-28">
           <div>
             <div className="inline-flex animate-momo-wiggle items-center gap-1.5 rounded-full bg-momo-green-neon px-4 py-1.5 text-xs font-extrabold uppercase tracking-wide text-momo-black">
@@ -57,10 +56,10 @@ export default async function HomePage({
             <p className="font-display mt-4 text-sm font-bold uppercase tracking-[0.2em] text-momo-orange">
               {dict.home.heroKicker}
             </p>
-            <h1 className="font-display mt-4 text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
+            <h1 className="font-display mt-4 text-4xl font-extrabold leading-[1.05] text-momo-black sm:text-5xl lg:text-6xl">
               {dict.home.heroTitle}
             </h1>
-            <p className="mt-6 max-w-xl text-lg text-white/75">
+            <p className="mt-6 max-w-xl text-lg text-momo-black/70">
               {dict.home.heroSubtitle}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
@@ -72,7 +71,7 @@ export default async function HomePage({
               </Link>
               <Link
                 href={`/${locale}/galleria`}
-                className="rounded-full border-2 border-white/30 px-6 py-3.5 text-base font-extrabold text-white transition-colors hover:border-momo-green-neon hover:text-momo-green-neon"
+                className="rounded-full border-2 border-momo-black/25 px-6 py-3.5 text-base font-extrabold text-momo-black transition-colors hover:border-momo-green-700 hover:text-momo-green-700"
               >
                 {dict.home.heroCta2}
               </Link>

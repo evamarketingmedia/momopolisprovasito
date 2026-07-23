@@ -31,7 +31,7 @@ export default function Header({
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b-2 border-momo-green-neon bg-momo-black/95 backdrop-blur supports-[backdrop-filter]:bg-momo-black/80">
+    <header className="sticky top-0 z-50 border-b-2 border-momo-green-neon bg-white">
       <div className="flex w-full items-center justify-between gap-4 px-3 py-3 sm:px-4 xl:px-6 2xl:px-10">
         <Link
           href={`/${locale}`}
@@ -56,7 +56,7 @@ export default function Header({
               className={`whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-bold transition-colors 2xl:px-4 ${
                 isActive(item.slug)
                   ? "bg-momo-green-700 text-white"
-                  : "text-white/80 hover:bg-white/10 hover:text-white"
+                  : "text-momo-black/75 hover:bg-momo-black/5 hover:text-momo-black"
               }`}
             >
               {item.label}
@@ -77,7 +77,7 @@ export default function Header({
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="rounded-full border border-white/20 p-2 text-white xl:hidden"
+          className="rounded-full border border-momo-black/20 p-2 text-momo-black xl:hidden"
           aria-label="Menu"
           aria-expanded={open}
         >
@@ -86,7 +86,7 @@ export default function Header({
       </div>
 
       {open && (
-        <div className="border-t border-white/10 bg-momo-black px-4 pb-5 pt-2 xl:hidden">
+        <div className="border-t border-momo-black/10 bg-white px-4 pb-5 pt-2 xl:hidden">
           <nav className="flex flex-col gap-1">
             {navItems.map((item) => (
               <Link
@@ -96,7 +96,7 @@ export default function Header({
                 className={`rounded-xl px-3 py-2.5 text-base font-bold ${
                   isActive(item.slug)
                     ? "bg-momo-green-700 text-white"
-                    : "text-white/85 hover:bg-white/10"
+                    : "text-momo-black/80 hover:bg-momo-black/5"
                 }`}
               >
                 {item.label}
