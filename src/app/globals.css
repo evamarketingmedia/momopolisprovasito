@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #11130f;
+
+  /* Momopolis brand palette: nero, verde fluo, arancione fluo */
+  --color-momo-black: #0c0d0b;
+  --color-momo-black-soft: #17190f;
+  --color-momo-green-900: #0d3d1f;
+  --color-momo-green-700: #0ea65b;
+  --color-momo-green-500: #22d67a;
+  --color-momo-green-300: #8cff5c;
+  --color-momo-green-neon: #a6ff00;
+  --color-momo-orange: #ff5f00;
+  --color-momo-orange-hot: #ff8a00;
+  --color-momo-cream: #ffffff;
+  --color-momo-cream-dim: #f7f8f4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-momo-black: var(--color-momo-black);
+  --color-momo-black-soft: var(--color-momo-black-soft);
+  --color-momo-green-900: var(--color-momo-green-900);
+  --color-momo-green-700: var(--color-momo-green-700);
+  --color-momo-green-500: var(--color-momo-green-500);
+  --color-momo-green-300: var(--color-momo-green-300);
+  --color-momo-green-neon: var(--color-momo-green-neon);
+  --color-momo-orange: var(--color-momo-orange);
+  --color-momo-orange-hot: var(--color-momo-orange-hot);
+  --color-momo-cream: var(--color-momo-cream);
+  --color-momo-cream-dim: var(--color-momo-cream-dim);
+  --font-sans: var(--font-nunito);
+  --font-display: var(--font-baloo);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-nunito), Arial, Helvetica, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-baloo), var(--font-nunito), sans-serif;
+}
+
+.text-glow-orange {
+  text-shadow: 0 0 18px rgba(255, 95, 0, 0.55);
+}
+
+.shadow-glow-orange {
+  box-shadow: 0 0 0 2px var(--color-momo-orange), 0 0 24px rgba(255, 95, 0, 0.45);
+}
+
+.shadow-glow-green {
+  box-shadow: 0 0 0 2px var(--color-momo-green-neon), 0 0 24px rgba(166, 255, 0, 0.45);
+}
+
+.bg-dots {
+  background-image: radial-gradient(rgba(255, 95, 0, 0.18) 2px, transparent 2px);
+  background-size: 22px 22px;
+}
+
+.bg-dots-green {
+  background-image: radial-gradient(rgba(166, 255, 0, 0.22) 2px, transparent 2px);
+  background-size: 22px 22px;
+}
+
+@keyframes momo-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-momo-bounce {
+  animation: momo-bounce 1.6s ease-in-out infinite;
+}
+
+@keyframes momo-wiggle {
+  0%, 100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+.animate-momo-wiggle {
+  animation: momo-wiggle 2.4s ease-in-out infinite;
+}
+
+.momo-wave-fill {
+  fill: var(--color-momo-cream);
+}
+
+/* Availability calendar theming */
+.momo-calendar .rdp-root {
+  --rdp-accent-color: var(--color-momo-orange);
+  --rdp-accent-background-color: rgba(255, 95, 0, 0.14);
+  --rdp-today-color: var(--color-momo-green-700);
+  font-family: var(--font-nunito), sans-serif;
+}
+
+.momo-calendar .rdp-day_button {
+  font-weight: 700;
+}
+
+.momo-calendar .rdp-selected .rdp-day_button {
+  background-color: var(--color-momo-orange);
+  color: var(--color-momo-black);
+  border-color: var(--color-momo-orange);
+}
+
+.momo-calendar .rdp-day_booked:not(.rdp-outside) .rdp-day_button {
+  background-color: rgba(12, 13, 11, 0.08);
+  color: rgba(12, 13, 11, 0.45);
+  text-decoration: line-through;
+}
+
+.momo-input {
+  width: 100%;
+  border-radius: 0.9rem;
+  border: 1.5px solid rgba(12, 13, 11, 0.12);
+  background: #fff;
+  padding: 0.7rem 1rem;
+  font-size: 0.95rem;
+  color: var(--color-momo-black);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.momo-input:focus {
+  outline: none;
+  border-color: var(--color-momo-orange);
+  box-shadow: 0 0 0 3px rgba(255, 95, 0, 0.15);
+}
+
+.momo-input::placeholder {
+  color: rgba(12, 13, 11, 0.4);
+}
