@@ -121,10 +121,22 @@ body:has(.portal-home) > a[aria-label*="WhatsApp"] {
   border-color: var(--color-momo-orange);
 }
 
+.momo-calendar .rdp-day_available:not(.rdp-selected) .rdp-day_button {
+  background-color: color-mix(in srgb, var(--color-momo-green-500) 25%, white);
+  color: var(--color-momo-black);
+  border-color: var(--color-momo-green-500);
+  font-weight: 800;
+}
+
 .momo-calendar .rdp-day_booked:not(.rdp-outside) .rdp-day_button {
   background-color: rgba(12, 13, 11, 0.08);
   color: rgba(12, 13, 11, 0.45);
   text-decoration: line-through;
+}
+
+.momo-calendar .rdp-disabled:not(.rdp-day_booked) .rdp-day_button {
+  background-color: rgba(12, 13, 11, 0.04);
+  color: rgba(12, 13, 11, 0.28);
 }
 
 .momo-input {

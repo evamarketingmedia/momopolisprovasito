@@ -116,7 +116,7 @@ export default async function ContactPage({
               {dict.contact.formIntro}
             </p>
             <div className="mt-8">
-              <BookingForm locale={locale} config={partyConfig} />
+              <BookingForm locale={locale} dict={dict} config={partyConfig} />
             </div>
           </div>
         </Container>

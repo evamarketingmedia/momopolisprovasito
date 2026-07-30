@@ -75,7 +75,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           >
             <Image src={image} alt="" fill sizes="50vw" priority={slug === "parco"} className="object-cover transition duration-700 group-hover:scale-105" />
             <div className={`absolute inset-0 bg-gradient-to-t ${tone} via-white/5 to-transparent`} />
-            <div className="absolute inset-x-0 bottom-0 flex items-center gap-3 p-5 text-momo-black sm:p-8">
+            <div className={`absolute inset-x-0 bottom-0 flex items-center gap-3 p-5 text-momo-black sm:p-8 ${slug === "bar" ? "sm:pl-32" : ""}`}>
               <span className="grid h-11 w-11 place-items-center rounded-full bg-white text-momo-black shadow-lg">
                 <Icon size={22} />
               </span>

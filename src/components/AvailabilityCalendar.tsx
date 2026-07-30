@@ -85,8 +85,11 @@ export default function AvailabilityCalendar({
               { before: today },
               (date) => !openDateKeys.has(date.toDateString()),
             ]}
-            modifiers={{ soldOut: soldOutDates }}
-            modifiersClassNames={{ soldOut: "rdp-day_booked" }}
+            modifiers={{ available: openDates, soldOut: soldOutDates }}
+            modifiersClassNames={{
+              available: "rdp-day_available",
+              soldOut: "rdp-day_booked",
+            }}
             className="mx-auto"
           />
         </div>
