@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import {
-  checkAdminPassword,
+  checkAdminCredentials,
   createAdminSession,
   clearAdminSession,
   requireAdmin,
@@ -11,9 +11,10 @@ import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { revalidatePublicSite } from "@/lib/revalidate-site";
 
 export async function loginAction(formData: FormData) {
+  const username = String(formData.get("username") ?? "");
   const password = String(formData.get("password") ?? "");
 
-  if (!checkAdminPassword(password)) {
+  if (!checkAdminCredentials(username, password)) {
     redirect("/admin/login?error=1");
   }
 

@@ -37,13 +37,22 @@ function isValidToken(token: string): boolean {
   return timingSafeEqual(a, b);
 }
 
-export function checkAdminPassword(password: string): boolean {
-  const expected = process.env.ADMIN_PASSWORD;
-  if (!expected) return false;
-  const a = Buffer.from(password);
+function safeEqual(value: string, expected: string): boolean {
+  const a = Buffer.from(value);
   const b = Buffer.from(expected);
   if (a.length !== b.length) return false;
   return timingSafeEqual(a, b);
+}
+
+export function checkAdminCredentials(username: string, password: string): boolean {
+  const expectedUsername = process.env.ADMIN_USERNAME?.trim() || "admin";
+  const expectedPassword = process.env.ADMIN_PASSWORD;
+  if (!expectedPassword) return false;
+
+  return (
+    safeEqual(username.trim(), expectedUsername) &&
+    safeEqual(password, expectedPassword)
+  );
 }
 
 export async function createAdminSession(): Promise<void> {
