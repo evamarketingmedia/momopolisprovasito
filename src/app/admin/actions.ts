@@ -131,9 +131,9 @@ export async function updatePartyConfig(formData: FormData) {
     throw new Error("Prezzi base non validi");
   }
 
-  const { error } = await supabase!.from("party_config").upsert({
-    key: "main",
-    value,
+  const { error } = await supabase!.from("site_images").upsert({
+    key: "party_config",
+    url: JSON.stringify(value),
     updated_at: new Date().toISOString(),
   });
   if (error) throw error;

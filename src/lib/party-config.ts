@@ -53,10 +53,18 @@ export const defaultPartyConfig: PartyConfig = {
 export async function getPartyConfig(): Promise<PartyConfig> {
   if (!isSupabaseConfigured) return defaultPartyConfig;
   const { data, error } = await supabase!
-    .from("party_config")
-    .select("value")
-    .eq("key", "main")
+    .from("site_images")
+    .select("url")
+    .eq("key", "party_config")
     .maybeSingle();
-  if (error || !data?.value) return defaultPartyConfig;
-  return { ...defaultPartyConfig, ...(data.value as Partial<PartyConfig>) };
+  if (error || !data?.url) return defaultPartyConfig;
+  try {
+    return {
+      ...defaultPartyConfig,
+      ...(JSON.parse(data.url as string) as Partial<PartyConfig>),
+    };
+  } catch {
+    console.error("[party-config] invalid stored JSON, using defaults");
+    return defaultPartyConfig;
+  }
 }
