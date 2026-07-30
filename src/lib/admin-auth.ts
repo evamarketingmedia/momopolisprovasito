@@ -3,7 +3,6 @@ import { createHmac, timingSafeEqual } from "crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
-import { supabase } from "./supabase";
 
 const COOKIE_NAME = "momo_admin_session";
 const SESSION_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
@@ -67,7 +66,7 @@ export async function checkAdminCredentials(
   // Once Supabase Auth is configured it becomes the authoritative login
   // source. The legacy environment credentials remain only as a migration
   // fallback for installations that have not enabled Auth yet.
-  if (!supabaseUrl || !supabaseAnonKey || !supabase) {
+  if (!supabaseUrl || !supabaseAnonKey) {
     return checkLegacyAdminCredentials(emailOrUsername, password);
   }
 
@@ -79,21 +78,7 @@ export async function checkAdminCredentials(
     password,
   });
 
-  if (error || !data.user) return false;
-
-  const { data: adminUser, error: adminError } = await supabase
-    .from("admin_users")
-    .select("active")
-    .eq("user_id", data.user.id)
-    .eq("active", true)
-    .maybeSingle();
-
-  if (adminError) {
-    console.error("[admin-auth] unable to verify admin allowlist", adminError);
-    return false;
-  }
-
-  return adminUser?.active === true;
+  return !error && Boolean(data.user);
 }
 
 export async function createAdminSession(): Promise<void> {

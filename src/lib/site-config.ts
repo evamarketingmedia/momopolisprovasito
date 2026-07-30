@@ -1,6 +1,6 @@
 // NOTE: placeholder business data — replace with the real Momopolis details.
 export const siteConfig = {
-  name: "Momopolis",
+  name: "Momòpolis",
   tagline: "Family Bar & Park",
   domain: "https://www.momopolis.ch",
   email: "info@momopolis.ch",
@@ -10,7 +10,7 @@ export const siteConfig = {
   // Swap in the exact address once available (updates the map + structured data automatically).
   address: {
     street: "Via Penate 7",
-    zip: "6850",
+    zip: "6500",
     city: "Mendrisio",
     canton: "Ticino",
     country: "CH",

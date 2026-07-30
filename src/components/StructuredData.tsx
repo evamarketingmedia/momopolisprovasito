@@ -4,7 +4,7 @@ import type { Locale } from "@/lib/dictionaries";
 export default function StructuredData({ locale }: { locale: Locale }) {
   const data = {
     "@context": "https://schema.org",
-    "@type": "AmusementPark",
+    "@type": ["AmusementPark", "LocalBusiness"],
     name: siteConfig.name,
     alternateName: `${siteConfig.name} ${siteConfig.tagline}`,
     description:
@@ -15,7 +15,18 @@ export default function StructuredData({ locale }: { locale: Locale }) {
     telephone: siteConfig.phone,
     email: siteConfig.email,
     priceRange: "CHF",
-    image: `${siteConfig.domain}/og-image.jpg`,
+    image: `${siteConfig.domain}/momopolis/ingresso.webp`,
+    hasMap: siteConfig.mapsDirectionsUrl,
+    currenciesAccepted: "CHF",
+    paymentAccepted: "Cash, Credit Card",
+    knowsLanguage: ["it", "en"],
+    areaServed: [
+      { "@type": "AdministrativeArea", name: "Ticino, Svizzera" },
+      { "@type": "AdministrativeArea", name: "Lombardia, Italia" },
+      { "@type": "City", name: "Mendrisio" },
+      { "@type": "City", name: "Como" },
+      { "@type": "City", name: "Varese" },
+    ],
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.address.street,

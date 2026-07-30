@@ -43,11 +43,30 @@ export async function generateMetadata({
       template: `%s · ${siteConfig.name}`,
     },
     description: dict.home.heroSubtitle,
+    keywords:
+      lang === "it"
+        ? [
+            "parco giochi indoor Mendrisio",
+            "family bar Ticino",
+            "parco bambini Svizzera",
+            "feste compleanno bambini Mendrisio",
+            "parco giochi vicino Como",
+            "family bar vicino Italia Svizzera",
+            "Momòpolis",
+          ]
+        : [
+            "indoor playground Mendrisio",
+            "family bar Ticino",
+            "children birthday parties Switzerland",
+            "indoor playground near Como",
+            "Momòpolis",
+          ],
     alternates: {
       canonical: `/${lang}`,
       languages: {
         it: "/it",
         en: "/en",
+        "x-default": "/it",
       },
     },
     openGraph: {
@@ -56,6 +75,7 @@ export async function generateMetadata({
       description: dict.home.heroSubtitle,
       url: `${siteConfig.domain}/${lang}`,
       locale: lang === "it" ? "it_CH" : "en_US",
+      alternateLocale: lang === "it" ? ["it_IT", "en_US"] : ["it_CH", "it_IT"],
       type: "website",
     },
     twitter: {

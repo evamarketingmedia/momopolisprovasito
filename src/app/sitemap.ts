@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site-config";
 import { locales } from "@/lib/dictionaries";
 
-const paths = ["", "chi-siamo", "galleria", "eventi", "pacchetti-feste", "contatti"];
+const paths = ["", "chi-siamo", "parco", "bar", "galleria", "eventi", "pacchetti-feste", "contatti"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -14,7 +14,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: slug === "" ? 1 : 0.7,
     alternates: {
       languages: Object.fromEntries(
-        locales.map((l) => [l, `${siteConfig.domain}/${l}${slug ? `/${slug}` : ""}`])
+        [
+          ...locales.map((l) => [l, `${siteConfig.domain}/${l}${slug ? `/${slug}` : ""}`]),
+          ["x-default", `${siteConfig.domain}/it${slug ? `/${slug}` : ""}`],
+        ]
       ),
     },
   }));
