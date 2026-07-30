@@ -9,7 +9,7 @@ export const siteConfig = {
   // Placeholder street — Momopolis is a few minutes from FoxTown Mendrisio.
   // Swap in the exact address once available (updates the map + structured data automatically).
   address: {
-    street: "Via Vincenzo Vela 4",
+    street: "Via Penate 7",
     zip: "6850",
     city: "Mendrisio",
     canton: "Ticino",
@@ -21,9 +21,9 @@ export const siteConfig = {
   },
   // No API key required — swap the query for the exact address once known.
   mapsEmbedSrc:
-    "https://www.google.com/maps?q=FoxTown+Factory+Stores,+Mendrisio&output=embed",
+    "https://www.google.com/maps?q=Via+Penate+7,+6500+Mendrisio,+Svizzera&output=embed",
   mapsDirectionsUrl:
-    "https://www.google.com/maps/dir/?api=1&destination=FoxTown+Factory+Stores+Mendrisio",
+    "https://www.google.com/maps/dir/?api=1&destination=Via+Penate+7,+6500+Mendrisio,+Svizzera",
   openingHours: [
     { day: { it: "Lunedì", en: "Monday" }, hours: "Chiuso / Closed" },
     { day: { it: "Martedì – Venerdì", en: "Tuesday – Friday" }, hours: "14:00 – 19:00" },

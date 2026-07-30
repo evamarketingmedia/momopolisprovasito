@@ -8,6 +8,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import StructuredData from "@/components/StructuredData";
+import MapEmbed from "@/components/MapEmbed";
+import Container from "@/components/Container";
 
 const baloo = Baloo_2({
   variable: "--font-baloo",
@@ -82,6 +84,20 @@ export default async function LangLayout({
         <StructuredData locale={lang as Locale} />
         <Header locale={lang as Locale} dict={dict} />
         <main className="flex-1">{children}</main>
+        <section className="bg-momo-green-neon/10 py-14 sm:py-16">
+          <Container>
+            <p className="font-display text-sm font-extrabold uppercase tracking-[0.2em] text-momo-orange">
+              Momòpolis Mendrisio
+            </p>
+            <h2 className="font-display mt-2 text-3xl font-extrabold text-momo-black">
+              Come raggiungerci
+            </h2>
+            <p className="mt-2 text-momo-black/65">Via Penate 7, 6500 Mendrisio (Ticino)</p>
+            <div className="mt-6">
+              <MapEmbed dict={dict} />
+            </div>
+          </Container>
+        </section>
         <Footer locale={lang as Locale} dict={dict} />
         <WhatsAppButton dict={dict} />
       </body>

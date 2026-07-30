@@ -12,7 +12,9 @@ import {
   addGalleryImage,
   updateGalleryImage,
   deleteGalleryImage,
+  updatePartyConfig,
 } from "./actions";
+import { getPartyConfig } from "@/lib/party-config";
 
 export const metadata: Metadata = {
   title: "Dashboard · Momopolis Admin",
@@ -67,9 +69,10 @@ export default async function AdminDashboardPage({
   }
 
   const { saved } = await searchParams;
-  const [siteImages, galleryImages] = await Promise.all([
+  const [siteImages, galleryImages, partyConfig] = await Promise.all([
     getSiteImages(),
     getGalleryImages(),
+    getPartyConfig(),
   ]);
 
   const byCategory = (cat: GalleryCategory) =>
@@ -83,6 +86,69 @@ export default async function AdminDashboardPage({
             Modifica salvata.
           </div>
         )}
+
+        <section className="mb-14">
+          <h2 className="font-display text-2xl font-extrabold text-momo-black">
+            Preventivatore feste
+          </h2>
+          <p className="mt-1 text-sm text-momo-black/60">
+            Modifica prezzi e scelte mostrate nel percorso “Prenota la tua festa”.
+            Ogni elemento usa i campi id, label, description e price.
+          </p>
+          <form action={updatePartyConfig} className="mt-6 space-y-6 rounded-2xl border border-black/10 bg-white p-6">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              <label className="text-sm font-bold">Prezzo base feriale (CHF)
+                <input name="baseWeekdayPrice" type="number" min="0" step="0.5" required defaultValue={partyConfig.baseWeekdayPrice} className="momo-input mt-1" />
+              </label>
+              <label className="text-sm font-bold">Prezzo base festività (CHF)
+                <input name="baseHolidayPrice" type="number" min="0" step="0.5" required defaultValue={partyConfig.baseHolidayPrice} className="momo-input mt-1" />
+              </label>
+              <label className="text-sm font-bold">Supplemento bambino (CHF)
+                <input name="baseChildPrice" type="number" min="0" step="0.5" required defaultValue={partyConfig.baseChildPrice} className="momo-input mt-1" />
+              </label>
+              <label className="text-sm font-bold">Quota adulto (CHF)
+                <input name="adultPrice" type="number" min="0" step="0.5" required defaultValue={partyConfig.adultPrice} className="momo-input mt-1" />
+              </label>
+              <label className="text-sm font-bold">Minimo bambini
+                <input name="minimumChildren" type="number" min="1" required defaultValue={partyConfig.minimumChildren} className="momo-input mt-1" />
+              </label>
+            </div>
+            <label className="block text-sm font-bold">
+              Date festive aggiuntive
+              <input
+                name="holidayDates"
+                type="text"
+                defaultValue={partyConfig.holidayDates.join(", ")}
+                placeholder="2026-08-01, 2026-12-25"
+                className="momo-input mt-1"
+              />
+              <span className="mt-1 block text-xs font-normal text-momo-black/50">
+                Sabato e domenica usano automaticamente il prezzo festività. Inserisci qui le altre date in formato AAAA-MM-GG.
+              </span>
+            </label>
+            {([
+              ["packages", "Pacchetti", partyConfig.packages],
+              ["cakes", "Torte", partyConfig.cakes],
+              ["extras", "Extra", partyConfig.extras],
+              ["setups", "Allestimenti", partyConfig.setups],
+            ] as const).map(([name, label, value]) => (
+              <label key={name} className="block text-sm font-bold">
+                {label}
+                <textarea
+                  name={name}
+                  required
+                  rows={7}
+                  spellCheck={false}
+                  defaultValue={JSON.stringify(value, null, 2)}
+                  className="momo-input mt-1 font-mono text-xs"
+                />
+              </label>
+            ))}
+            <button type="submit" className="rounded-full bg-momo-orange px-6 py-3 text-sm font-extrabold text-momo-black">
+              Salva preventivatore
+            </button>
+          </form>
+        </section>
 
         {/* SITE IMAGES */}
         <section>

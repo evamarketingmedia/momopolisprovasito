@@ -29,22 +29,21 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     <html lang="it" className={`${baloo.variable} ${nunito.variable} h-full antialiased`}>
       <body className="min-h-full bg-momo-cream">
         {authed && (
-          <header className="sticky top-0 z-10 flex flex-wrap items-center justify-between gap-4 border-b-2 border-momo-green-neon bg-momo-black px-6 py-4">
+          <header className="sticky top-0 z-10 flex flex-wrap items-center justify-between gap-4 border-b-2 border-momo-orange bg-momo-green-neon px-6 py-4">
             <div className="flex flex-wrap items-center gap-6">
-              <span className="font-display text-xl font-extrabold text-white">
-                Momo<span className="text-momo-orange">polis</span>{" "}
-                <span className="text-white/50">Admin</span>
+              <span className="font-display text-xl font-extrabold text-momo-black">
+                Momòpolis <span className="text-momo-black/50">Admin</span>
               </span>
               <nav className="flex gap-1">
                 <Link
                   href="/admin"
-                  className="rounded-full px-3 py-1.5 text-sm font-bold text-white/80 hover:bg-white/10 hover:text-white"
+                  className="rounded-full px-3 py-1.5 text-sm font-bold text-momo-black/80 hover:bg-white/60"
                 >
-                  Foto
+                  Contenuti e preventivatore
                 </Link>
                 <Link
                   href="/admin/availability"
-                  className="rounded-full px-3 py-1.5 text-sm font-bold text-white/80 hover:bg-white/10 hover:text-white"
+                  className="rounded-full px-3 py-1.5 text-sm font-bold text-momo-black/80 hover:bg-white/60"
                 >
                   Disponibilità
                 </Link>
@@ -53,7 +52,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             <form action={logoutAction}>
               <button
                 type="submit"
-                className="rounded-full border border-white/20 px-4 py-2 text-sm font-bold text-white/80 hover:text-white"
+                className="rounded-full border border-momo-black/20 bg-white px-4 py-2 text-sm font-bold text-momo-black/80"
               >
                 Esci
               </button>

@@ -10,17 +10,17 @@ export default function PageHero({
   intro?: string;
 }) {
   return (
-    <section className="bg-dots relative overflow-hidden bg-momo-black pb-20 pt-16 sm:pb-24 sm:pt-20">
-      <div className="absolute inset-0 bg-gradient-to-br from-momo-green-900/60 via-momo-black to-momo-black" />
+    <section className="bg-dots-green relative overflow-hidden bg-white pb-20 pt-28 sm:pb-24 sm:pt-32">
+      <div className="absolute inset-0 bg-gradient-to-br from-momo-green-neon/35 via-white to-momo-orange/20" />
       <Container className="relative">
         <p className="font-display text-sm font-bold uppercase tracking-[0.2em] text-momo-orange">
           {kicker}
         </p>
-        <h1 className="font-display mt-3 max-w-3xl text-4xl font-extrabold text-white sm:text-5xl">
+        <h1 className="font-display mt-3 max-w-3xl text-4xl font-extrabold text-momo-black sm:text-5xl">
           {title}
         </h1>
         {intro && (
-          <p className="mt-5 max-w-2xl text-lg text-white/75">{intro}</p>
+          <p className="mt-5 max-w-2xl text-lg text-momo-black/70">{intro}</p>
         )}
       </Container>
       <svg

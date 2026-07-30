@@ -28,17 +28,20 @@ export default async function BarPage({ params }: { params: Promise<{ lang: stri
           </div>
           <div>
             <div className="flex gap-3 text-momo-orange"><Coffee /><UtensilsCrossed /><Gamepad2 /></div>
+            <p className="mt-5 inline-flex rounded-full bg-momo-green-neon px-4 py-2 text-sm font-extrabold text-momo-black">
+              Bar aperto a tutti · riservazioni non consentite
+            </p>
             <p className="mt-5 text-lg leading-relaxed text-momo-black/75">{dict.bar.body}</p>
             <h2 className="font-display mt-8 text-3xl font-extrabold text-momo-black">{dict.bar.accessibleTitle}</h2>
             <p className="mt-3 text-lg leading-relaxed text-momo-black/75">{dict.bar.accessibleText}</p>
           </div>
         </Container>
       </section>
-      <section className="bg-momo-green-900 py-16 text-white sm:py-20">
+      <section className="bg-momo-green-neon/20 py-16 text-momo-black sm:py-20">
         <Container className="grid items-center gap-10 lg:grid-cols-2">
           <div>
             <h2 className="font-display text-4xl font-extrabold">{dict.bar.menuTitle}</h2>
-            <p className="mt-4 max-w-xl text-lg text-white/80">{dict.bar.menuText}</p>
+            <p className="mt-4 max-w-xl text-lg text-momo-black/70">{dict.bar.menuText}</p>
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl ring-4 ring-momo-orange/70">
             <Image src="/momopolis/sala.webp" alt="Tavoli del Momòpolis Bar" fill sizes="(max-width: 1024px) 100vw, 600px" className="object-cover" />

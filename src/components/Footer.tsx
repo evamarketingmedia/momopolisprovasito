@@ -38,12 +38,11 @@ export default function Footer({
   ];
 
   return (
-    <footer className="border-t-2 border-momo-green-neon bg-momo-black text-white/80">
+    <footer className="border-t-4 border-momo-green-neon bg-white text-momo-black/75">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-4">
         <div className="md:col-span-2">
-          <div className="font-display flex items-center gap-1 text-2xl font-extrabold text-white">
-            <span className="text-momo-orange">Momo</span>
-            <span>polis</span>
+          <div className="font-display text-2xl font-extrabold text-momo-orange">
+            Momòpolis
           </div>
           <p className="mt-3 max-w-sm text-sm leading-relaxed">
             {dict.footer.tagline}
@@ -52,14 +51,14 @@ export default function Footer({
             <span
               aria-label="Instagram"
               aria-disabled="true"
-              className="flex h-10 w-10 cursor-default items-center justify-center rounded-full border border-white/15 text-white/45"
+              className="flex h-10 w-10 cursor-default items-center justify-center rounded-full border-2 border-momo-green-neon bg-momo-green-neon/15 text-momo-black/55"
             >
               <InstagramIcon />
             </span>
             <span
               aria-label="Facebook"
               aria-disabled="true"
-              className="flex h-10 w-10 cursor-default items-center justify-center rounded-full border border-white/15 text-white/45"
+              className="flex h-10 w-10 cursor-default items-center justify-center rounded-full border-2 border-momo-orange bg-momo-orange/10 text-momo-black/55"
             >
               <FacebookIcon />
             </span>
@@ -75,7 +74,7 @@ export default function Footer({
               <li key={item.slug || "home"}>
                 <Link
                   href={`/${locale}${item.slug ? `/${item.slug}` : ""}`}
-                  className="transition-colors hover:text-white"
+                  className="transition-colors hover:text-momo-green-700"
                 >
                   {item.label}
                 </Link>
@@ -90,7 +89,7 @@ export default function Footer({
           </h3>
           <ul className="mt-4 space-y-3 text-sm">
             <li className="flex items-start gap-2">
-              <MapPin size={16} className="mt-0.5 shrink-0 text-momo-green-300" />
+              <MapPin size={16} className="mt-0.5 shrink-0 text-momo-green-700" />
               <span>
                 {siteConfig.address.street}
                 <br />
@@ -99,21 +98,21 @@ export default function Footer({
               </span>
             </li>
             <li className="flex items-center gap-2">
-              <Phone size={16} className="shrink-0 text-momo-green-300" />
+              <Phone size={16} className="shrink-0 text-momo-green-700" />
               <a href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}>
                 {siteConfig.phone}
               </a>
             </li>
             <li className="flex items-center gap-2">
-              <Mail size={16} className="shrink-0 text-momo-green-300" />
+              <Mail size={16} className="shrink-0 text-momo-green-700" />
               <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
             </li>
           </ul>
         </div>
       </div>
 
-      <div className="border-t border-white/10 px-4 py-5 text-center text-xs text-white/50 sm:px-6">
-        © {new Date().getFullYear()} {siteConfig.name}. {dict.footer.rights}
+      <div className="border-t border-momo-orange/30 bg-momo-orange/10 px-4 py-5 text-center text-xs text-momo-black/55 sm:px-6">
+        © {new Date().getFullYear()} Momòpolis. {dict.footer.rights}
       </div>
     </footer>
   );

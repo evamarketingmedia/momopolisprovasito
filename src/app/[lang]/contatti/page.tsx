@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/site-config";
 import Container from "@/components/Container";
 import PageHero from "@/components/PageHero";
 import BookingForm from "@/components/BookingForm";
-import MapEmbed from "@/components/MapEmbed";
+import { getPartyConfig } from "@/lib/party-config";
 
 export async function generateMetadata({
   params,
@@ -32,6 +32,7 @@ export default async function ContactPage({
   if (!hasLocale(lang)) notFound();
   const locale = lang as Locale;
   const dict = await getDictionary(locale);
+  const partyConfig = await getPartyConfig();
 
   return (
     <>
@@ -115,22 +116,12 @@ export default async function ContactPage({
               {dict.contact.formIntro}
             </p>
             <div className="mt-8">
-              <BookingForm locale={locale} dict={dict} />
+              <BookingForm locale={locale} config={partyConfig} />
             </div>
           </div>
         </Container>
       </section>
 
-      <section className="pb-16 sm:pb-20">
-        <Container>
-          <h2 className="font-display text-2xl font-extrabold text-momo-black sm:text-3xl">
-            {dict.contact.mapTitle}
-          </h2>
-          <div className="mt-6">
-            <MapEmbed dict={dict} />
-          </div>
-        </Container>
-      </section>
     </>
   );
 }

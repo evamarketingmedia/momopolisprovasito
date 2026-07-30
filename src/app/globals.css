@@ -42,6 +42,11 @@ body {
   font-family: var(--font-nunito), Arial, Helvetica, sans-serif;
 }
 
+body:has(.portal-home) > header,
+body:has(.portal-home) > a[aria-label*="WhatsApp"] {
+  display: none;
+}
+
 .font-display {
   font-family: var(--font-baloo), var(--font-nunito), sans-serif;
 }

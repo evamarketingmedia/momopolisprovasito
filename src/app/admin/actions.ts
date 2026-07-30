@@ -94,3 +94,49 @@ export async function deleteGalleryImage(formData: FormData) {
   revalidatePublicSite();
   redirect("/admin?saved=1");
 }
+
+export async function updatePartyConfig(formData: FormData) {
+  await requireAdmin();
+  if (!isSupabaseConfigured) throw new Error("Supabase not configured");
+
+  const parseChoices = (name: string) => {
+    const value = JSON.parse(String(formData.get(name) ?? "[]"));
+    if (!Array.isArray(value)) throw new Error(`${name} non valido`);
+    return value.map((item) => ({
+      id: String(item.id ?? "").trim(),
+      label: String(item.label ?? "").trim(),
+      description: String(item.description ?? "").trim(),
+      price: Number(item.price ?? 0),
+    })).filter((item) => item.id && item.label && Number.isFinite(item.price));
+  };
+
+  const value = {
+    baseWeekdayPrice: Number(formData.get("baseWeekdayPrice")),
+    baseHolidayPrice: Number(formData.get("baseHolidayPrice")),
+    holidayDates: String(formData.get("holidayDates") ?? "")
+      .split(/\s|,/)
+      .map((date) => date.trim())
+      .filter(Boolean),
+    baseChildPrice: Number(formData.get("baseChildPrice")),
+    adultPrice: Number(formData.get("adultPrice")),
+    minimumChildren: Number(formData.get("minimumChildren")),
+    packages: parseChoices("packages"),
+    cakes: parseChoices("cakes"),
+    extras: parseChoices("extras"),
+    setups: parseChoices("setups"),
+  };
+
+  if (![value.baseWeekdayPrice, value.baseHolidayPrice, value.baseChildPrice, value.adultPrice, value.minimumChildren].every(Number.isFinite)) {
+    throw new Error("Prezzi base non validi");
+  }
+
+  const { error } = await supabase!.from("party_config").upsert({
+    key: "main",
+    value,
+    updated_at: new Date().toISOString(),
+  });
+  if (error) throw error;
+
+  revalidatePublicSite();
+  redirect("/admin?saved=party");
+}

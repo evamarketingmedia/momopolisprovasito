@@ -18,7 +18,7 @@ export default function MapEmbed({ dict }: { dict: Dictionary }) {
         href={siteConfig.mapsDirectionsUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center gap-2 bg-momo-black px-5 py-4 text-sm font-extrabold text-white transition-colors hover:bg-momo-green-900"
+        className="flex items-center justify-center gap-2 bg-momo-orange px-5 py-4 text-sm font-extrabold text-momo-black transition-colors hover:bg-momo-green-neon"
       >
         <Navigation size={16} />
         {dict.cta.getDirections}
