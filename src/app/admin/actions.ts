@@ -14,7 +14,7 @@ export async function loginAction(formData: FormData) {
   const username = String(formData.get("username") ?? "");
   const password = String(formData.get("password") ?? "");
 
-  if (!checkAdminCredentials(username, password)) {
+  if (!(await checkAdminCredentials(username, password))) {
     redirect("/admin/login?error=1");
   }
 

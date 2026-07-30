@@ -2,6 +2,8 @@ import "server-only";
 import { createHmac, timingSafeEqual } from "crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { createClient } from "@supabase/supabase-js";
+import { supabase } from "./supabase";
 
 const COOKIE_NAME = "momo_admin_session";
 const SESSION_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
@@ -44,7 +46,7 @@ function safeEqual(value: string, expected: string): boolean {
   return timingSafeEqual(a, b);
 }
 
-export function checkAdminCredentials(username: string, password: string): boolean {
+function checkLegacyAdminCredentials(username: string, password: string): boolean {
   const expectedUsername = process.env.ADMIN_USERNAME?.trim() || "admin";
   const expectedPassword = process.env.ADMIN_PASSWORD;
   if (!expectedPassword) return false;
@@ -53,6 +55,45 @@ export function checkAdminCredentials(username: string, password: string): boole
     safeEqual(username.trim(), expectedUsername) &&
     safeEqual(password, expectedPassword)
   );
+}
+
+export async function checkAdminCredentials(
+  emailOrUsername: string,
+  password: string
+): Promise<boolean> {
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
+
+  // Once Supabase Auth is configured it becomes the authoritative login
+  // source. The legacy environment credentials remain only as a migration
+  // fallback for installations that have not enabled Auth yet.
+  if (!supabaseUrl || !supabaseAnonKey || !supabase) {
+    return checkLegacyAdminCredentials(emailOrUsername, password);
+  }
+
+  const authClient = createClient(supabaseUrl, supabaseAnonKey, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+  const { data, error } = await authClient.auth.signInWithPassword({
+    email: emailOrUsername.trim(),
+    password,
+  });
+
+  if (error || !data.user) return false;
+
+  const { data: adminUser, error: adminError } = await supabase
+    .from("admin_users")
+    .select("active")
+    .eq("user_id", data.user.id)
+    .eq("active", true)
+    .maybeSingle();
+
+  if (adminError) {
+    console.error("[admin-auth] unable to verify admin allowlist", adminError);
+    return false;
+  }
+
+  return adminUser?.active === true;
 }
 
 export async function createAdminSession(): Promise<void> {

@@ -32,11 +32,13 @@ export default async function AdminLoginPage({
         <form action={loginAction} className="mt-6 space-y-4">
           <div>
             <label className="mb-1.5 block text-sm font-bold text-momo-black/80">
-              Nome utente
+              E-mail amministratore
             </label>
             <input
               type="text"
               name="username"
+              inputMode="email"
+              autoCapitalize="none"
               required
               autoComplete="username"
               autoFocus
@@ -58,7 +60,7 @@ export default async function AdminLoginPage({
 
           {error && (
             <p className="text-sm font-bold text-red-400">
-              Nome utente o password non corretti. Riprova.
+              E-mail o password non corrette, oppure utente non abilitato. Riprova.
             </p>
           )}
 
